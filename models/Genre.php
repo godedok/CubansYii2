@@ -4,6 +4,8 @@ namespace app\models;
 
 use yii\db\ActiveRecord;
 use yii\base\Model;
+use yii\data\ActiveDataProvider;
+
 /**
  * This is the model class for table "Genre"
  */
@@ -53,5 +55,28 @@ class Genre extends ActiveRecord
     public function getCubans()
     {
         return $this->hasMany(Cubans::className(), ['IdGenre' => 'id']);
+    }
+    /**
+     * 
+     */
+    public function search($params)
+    {
+        $query = self::find();
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        if (!( $this->load($params) && $this->validate())) {
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            'id' => $this->id,
+        ]);
+
+        $query->andFilterWhere(['like', 'Name', $this->Name]);
+
+        return $dataProvider;
     }
 }
