@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Genre;
+use app\models\GenreSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -12,7 +13,7 @@ class GenreController extends Controller
 
     public function actionIndex()
     {
-        $searchModel = new Genre();
+        $searchModel = new GenreSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         
         return $this->render('index', [
