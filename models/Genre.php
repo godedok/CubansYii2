@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Yii;
 use yii\db\ActiveRecord;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -25,26 +26,16 @@ class Genre extends ActiveRecord
     {
         return [
             [['id'], 'integer'],
-            [['Name'], 'require'],
-            [['Name'], 'string', 'max' => 45],
-            [['Name'], 'unique'],
+            [['Name'], 'safe'],
         ];
-    }
-    /**
-     * Returns all found scripts in the validation 
-     * rules specified in the method rules()
-     */
-    public function scenarios()
-    {
-        return Model::scenarios();
     }
     /**
      * Declare attribute labels
      */
-    public function attrbuteLabels()
+    public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'id' => 'Id',
             'Name' => 'Genre name'
         ];
     }
@@ -65,15 +56,14 @@ class Genre extends ActiveRecord
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 10,
+            ],
         ]);
 
         if (!( $this->load($params) && $this->validate())) {
             return $dataProvider;
         }
-
-        $query->andFilterWhere([
-            'id' => $this->id,
-        ]);
 
         $query->andFilterWhere(['like', 'Name', $this->Name]);
 
