@@ -6,6 +6,8 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Cubans;
+use yii\helpers\ArrayHelper;
+use app\models\Genre;
 
 class CubansSearch extends Cubans
 {
@@ -48,5 +50,9 @@ class CubansSearch extends Cubans
             ->andFilterWhere(['like', 'Genre.Name', $this->IdGenre]);
 
         return $dataProvider;
+    }
+    public function choiceGenre()
+    {
+        return ArrayHelper::map(Genre::find()->all(), 'id', 'Name');
     }
 }

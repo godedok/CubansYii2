@@ -67,4 +67,12 @@ class CubansController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+    public function actionGenre()
+    {
+        $genre = (new CubansSearch())->choiceGenre();
+
+        return $this->render('_form', [
+            'genre' => $genre,
+        ]);
+    }
 }

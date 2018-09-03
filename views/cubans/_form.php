@@ -2,8 +2,6 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\helpers\ArrayHelper;
-use app\models\Genre;
 
 
 /* @var $this yii\web\View */
@@ -23,7 +21,7 @@ use app\models\Genre;
 
     <?= $form->field($model, 'YearOfBirth')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'IdGenre')->dropDownList(ArrayHelper::map(Genre::find()->all(), 'id', 'Name')) ?>
+    <?= $form->field($model, 'IdGenre')->dropDownList($genre) ?>
 
     <?= $form->field($model, 'IsInGroup')->textInput(['maxlength' => true]) ?>
 
