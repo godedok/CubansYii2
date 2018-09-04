@@ -47,7 +47,8 @@ class Group extends ActiveRecord
         return $this->hasMany(Cubans::className(), ['IsInGroup' => 'idGroup']);
     }
 
-    public static function getAllGroups() {
+    public static function getAllGroups() 
+    {
         return ArrayHelper::map(self::find()->all(), 'idGroup', 'NameGroup');
     }
 }

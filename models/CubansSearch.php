@@ -14,6 +14,13 @@ use app\models\Cubans;
 class CubansSearch extends Cubans
 {
     /**
+     * 
+     */
+    public function attributes()
+    {
+        return array_merge(parent::attributes(), ['genre.Name']);
+    }
+    /**
      * Add rules of validation
      */
     public function rules()
@@ -21,7 +28,7 @@ class CubansSearch extends Cubans
         return [
             [['Id'], 'integer'],
             [['IdGenre', 'IsInGroup'], 'string'],
-            [['FirstName', 'LastName', 'Gender', 'YearOfBirth'], 'safe'],
+            [['FirstName', 'LastName', 'Gender', 'YearOfBirth', 'genre.Name'], 'safe'],
         ];
     }
     /**
@@ -53,16 +60,22 @@ class CubansSearch extends Cubans
 
         $query->andFilterWhere([
             'YearOfBirth' => $this->YearOfBirth,
-            
         ]);
 
-        $query ->joinWith("genre")
+        $query ->joinWith('genre')//["genre" => function ($query) {
+              //  $query->from(['genre' => 'Genre']);
+            //} ])
             ->joinWith("group")
             ->andFilterWhere(['like', 'FirstName', $this->FirstName])
             ->andFilterWhere(['like', 'LastName', $this->LastName])
             ->andFilterWhere(['like', 'Gender', $this->Gender])
             ->andFilterWhere(['like', 'Group.NameGroup', $this->IsInGroup])
-            ->andFilterWhere(['like', 'Genre.Name', $this->IdGenre]);
+            ->andFilterWhere(['like', 'Genre.Name', $this->getAttribute('genre.Name')]);
+
+        $dataProvider->sort->attributes['Genre.Name'] = [
+            'asc' => ['genre.Name' => SORT_ASC],
+            'desc' => ['genre.Name' => SORT_DESC],
+        ];
 
         return $dataProvider;
     }

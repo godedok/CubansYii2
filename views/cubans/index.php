@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\models\Genre;
+use app\models\Group;
 
 /**
  * $this yii\web\View
@@ -27,14 +29,22 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
             'FirstName',
             'LastName',
-            'Gender',
+            [
+                'attribute' => 'Gender',
+                'filter' => [
+                    'male',
+                    'female'
+                ],
+            ],
             'YearOfBirth',
             [
                 'attribute' => 'IdGenre',
+                'filter' => Genre::getAllGenres(),
                 'value' => 'genre.Name',
             ],
             [
                 'attribute' => 'IsInGroup',
+                'filter' => Group::getAllGroups(),
                 'value' => 'group.NameGroup',
             ],
             ['class' => 'yii\grid\ActionColumn'],
