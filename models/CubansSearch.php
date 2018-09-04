@@ -18,7 +18,7 @@ class CubansSearch extends Cubans
      */
     public function attributes()
     {
-        return array_merge(parent::attributes(), ['genre.Name']);
+        return array_merge(parent::attributes(), ['Genre.Name']);
     }
     /**
      * Add rules of validation
@@ -28,7 +28,7 @@ class CubansSearch extends Cubans
         return [
             [['Id'], 'integer'],
             [['IdGenre', 'IsInGroup'], 'string'],
-            [['FirstName', 'LastName', 'Gender', 'YearOfBirth', 'genre.Name'], 'safe'],
+            [['FirstName', 'LastName', 'Gender', 'YearOfBirth', 'Genre.Name'], 'safe'],
         ];
     }
     /**
