@@ -3,6 +3,12 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+/**
+ * $this yii\web\View
+ * $model app\models\Genre
+ * $form yii\widgets\ActiveForm
+ */
+
 ?>
 
 <div class="genre-form">

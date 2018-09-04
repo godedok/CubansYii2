@@ -3,6 +3,11 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
+/**
+ * $this yii\web\View
+ * $model app\models\Genre
+ */
+
 $this->title = $model->Name;
 $this->params['breadcrumbs'][] = ['label' => 'Genres', 'url' =>['index']];
 $this->params['breadcrumbs'][] = $this->title;

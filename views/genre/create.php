@@ -2,6 +2,11 @@
 
 use yii\helpers\Html;
 
+/**
+ * $this yii\web\View
+ * $model app\models\Genre
+ */
+
 $this->title = 'Create Genre';
 $this->params['breadcrumbs'][] = ['label' => 'Genres', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;

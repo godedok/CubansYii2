@@ -3,8 +3,10 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Cubans */
+/**
+ *   $model app\models\Cubans
+ *   $this yii\web\View
+ */  
 
 $this->title = $model->FirstName . " " . $model->LastName;
 $this->params['breadcrumbs'][] = ['label' => 'Cubans', 'url' => ['index']];

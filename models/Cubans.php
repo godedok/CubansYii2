@@ -3,13 +3,21 @@
 namespace app\models;
 
 use Yii;
-
+/**
+ * This is the model class for table "Cubans".
+ */
 class Cubans extends \yii\db\ActiveRecord
 {
+    /**
+     * Return table name
+     */
     public static function tableName()
     {
         return '{{Cubans}}';
     }
+    /**
+     * Add rules of validation
+     */
     public function rules()
     {
         return [
@@ -22,6 +30,9 @@ class Cubans extends \yii\db\ActiveRecord
             [['IdGenre'], 'exist', 'skipOnError' => true, 'targetClass' => Genre::className(), 'targetAttribute' => ['IdGenre' => 'id']],
         ];
     }
+    /**
+     * Aliases for table values
+     */
     public function attributeLabels()
     {
         return [
@@ -34,6 +45,9 @@ class Cubans extends \yii\db\ActiveRecord
             'IsInGroup' => 'Is In Group',
         ];
     }
+    /**
+     * Link to one-to-many table Genre
+     */
     public function getGenre()
     {
         return $this->hasOne(Genre::className(), ['id' => 'IdGenre']);

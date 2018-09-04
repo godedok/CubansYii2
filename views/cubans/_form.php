@@ -3,10 +3,14 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+use app\models\Genre;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Cubans */
-/* @var $form yii\widgets\ActiveForm */
+/**
+ * $this yii\web\View
+ * $model app\models\Cubans
+ * $form yii\widgets\ActiveForm
+ */
+
 ?>
 
 <div class="cubans-form">
@@ -21,7 +25,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'YearOfBirth')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'IdGenre')->dropDownList($genre) ?>
+    <?= $form->field($model, 'IdGenre')->dropDownList(Genre::getAllGenres()) ?>
 
     <?= $form->field($model, 'IsInGroup')->textInput(['maxlength' => true]) ?>
 

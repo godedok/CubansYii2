@@ -3,6 +3,12 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
+/**
+ * $this yii\web\View
+ * $searchModel app\models\CubansSearch
+ * $dataProvider yii\data\ActiveDataProvider
+ */
+
 $this->title = 'Cubans';
 $this->params['breadcrumbs'][] = $this->title;
 ?>

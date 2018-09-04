@@ -6,11 +6,16 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Cubans;
-use yii\helpers\ArrayHelper;
-use app\models\Genre;
+
+/**
+ * Search form for app\models\Cubans
+ */
 
 class CubansSearch extends Cubans
 {
+    /**
+     * Add rules of validation
+     */
     public function rules()
     {
         return [
@@ -19,10 +24,16 @@ class CubansSearch extends Cubans
             [['FirstName', 'LastName', 'Gender', 'YearOfBirth', 'IsInGroup'], 'safe'],
         ];
     }
+    /**
+     * Bypass scenarios() implementation in the parent class
+     */
     public function scenarios()
     {
         return Model::scenarios();
     }
+    /**
+     * Creates data provider instance with search query applied
+     */
     public function search($params)
     {
         $query = Cubans::find();
@@ -50,9 +61,5 @@ class CubansSearch extends Cubans
             ->andFilterWhere(['like', 'Genre.Name', $this->IdGenre]);
 
         return $dataProvider;
-    }
-    public function choiceGenre()
-    {
-        return ArrayHelper::map(Genre::find()->all(), 'id', 'Name');
     }
 }

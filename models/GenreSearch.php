@@ -8,7 +8,7 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 /**
- * This is the model class for table "Genre"
+ * Search form for app\models\Genre
  */
 class GenreSearch extends Genre
 {
@@ -22,12 +22,15 @@ class GenreSearch extends Genre
             [['Name'], 'safe'],
         ];
     }
+    /**
+     * Bypass scenarios() implementation in the parent class
+     */
     public function scenarios()
     {
         return Model::scenarios();
     }
     /**
-     * 
+     * Creates data provider instance with search query applied
      */
     public function search($params)
     {
