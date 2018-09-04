@@ -39,6 +39,7 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Cubans', 'url' => ['/cubans/index']],
             ['label' => 'Genres', 'url' => ['/genre/index']],
+            ['label' => 'Group', 'url' => ['/group/index']],
         ],
     ]);
     NavBar::end();

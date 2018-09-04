@@ -26,7 +26,7 @@ class Cubans extends \yii\db\ActiveRecord
             [['IdGenre'], 'integer'],
             [['FirstName', 'LastName'], 'string', 'max' => 20],
             [['Gender'], 'string', 'max' => 10],
-            [['IsInGroup'], 'string', 'max' => 40],
+            [['IsInGroup'], 'exist', 'skipOnError' => true, 'targetClass' => Group::className(), 'targetAttribute' => ['IsInGroup' => 'idGroup']],
             [['IdGenre'], 'exist', 'skipOnError' => true, 'targetClass' => Genre::className(), 'targetAttribute' => ['IdGenre' => 'id']],
         ];
     }
@@ -42,7 +42,7 @@ class Cubans extends \yii\db\ActiveRecord
             'Gender' => 'Gender',
             'YearOfBirth' => 'Year Of Birth',
             'IdGenre' => 'Genre Name',
-            'IsInGroup' => 'Is In Group',
+            'IsInGroup' => 'Name Group',
         ];
     }
     /**
@@ -51,5 +51,12 @@ class Cubans extends \yii\db\ActiveRecord
     public function getGenre()
     {
         return $this->hasOne(Genre::className(), ['id' => 'IdGenre']);
+    }
+    /**
+     * Link to one-to-many table Group
+     */
+    public function getGroup()
+    {
+        return $this->hasOne(Group::className(), ['idGroup' => 'IsInGroup']);
     }
 }

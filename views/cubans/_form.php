@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use app\models\Group;
 use app\models\Genre;
 
 /**
@@ -27,7 +27,7 @@ use app\models\Genre;
 
     <?= $form->field($model, 'IdGenre')->dropDownList(Genre::getAllGenres()) ?>
 
-    <?= $form->field($model, 'IsInGroup')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'IsInGroup')->dropDownList(Group::getAllGroups()) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

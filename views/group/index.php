@@ -5,19 +5,19 @@ use yii\grid\GridView;
 
 /**
  * $this yii\web\View
- * $searchModel app\models\CubansSearch
+ * $searchModel app\models\GroupSearch
  * $dataProvider yii\data\ActiveDataProvider
  */
 
-$this->title = 'Cubans';
+$this->title = 'Groups';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="cubans-index">
+<div class=group-index>
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Cubans', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Group', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -25,19 +25,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'FirstName',
-            'LastName',
-            'Gender',
-            'YearOfBirth',
-            [
-                'attribute' => 'IdGenre',
-                'value' => 'genre.Name',
-            ],
-            [
-                'attribute' => 'IsInGroup',
-                'value' => 'group.NameGroup',
-            ],
+            'NameGroup',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+    
 </div>

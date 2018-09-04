@@ -20,8 +20,8 @@ class CubansSearch extends Cubans
     {
         return [
             [['Id'], 'integer'],
-            [['IdGenre'], 'string'],
-            [['FirstName', 'LastName', 'Gender', 'YearOfBirth', 'IsInGroup'], 'safe'],
+            [['IdGenre', 'IsInGroup'], 'string'],
+            [['FirstName', 'LastName', 'Gender', 'YearOfBirth'], 'safe'],
         ];
     }
     /**
@@ -40,6 +40,9 @@ class CubansSearch extends Cubans
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 10,
+            ],
         ]);
 
         $this->load($params);
@@ -54,10 +57,11 @@ class CubansSearch extends Cubans
         ]);
 
         $query ->joinWith("genre")
+            ->joinWith("group")
             ->andFilterWhere(['like', 'FirstName', $this->FirstName])
             ->andFilterWhere(['like', 'LastName', $this->LastName])
             ->andFilterWhere(['like', 'Gender', $this->Gender])
-            ->andFilterWhere(['like', 'IsInGroup', $this->IsInGroup])
+            ->andFilterWhere(['like', 'Group.NameGroup', $this->IsInGroup])
             ->andFilterWhere(['like', 'Genre.Name', $this->IdGenre]);
 
         return $dataProvider;

@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'Gender',
             'YearOfBirth',
             'genre.Name',    
-            'IsInGroup',
+            'group.NameGroup',
         ],
     ]) ?>
 
