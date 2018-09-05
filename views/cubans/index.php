@@ -29,14 +29,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
             'FirstName',
             'LastName',
+            'YearOfBirth',
             [
                 'attribute' => 'Gender',
                 'filter' => [
                     'male',
-                    'female'
+                    'female',
                 ],
             ],
-            'YearOfBirth',
             [
                 'attribute' => 'IdGenre',
                 'filter' => Genre::getAllGenres(),

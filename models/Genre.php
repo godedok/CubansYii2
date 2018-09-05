@@ -47,7 +47,8 @@ class Genre extends ActiveRecord
         return $this->hasMany(Cubans::className(), ['IdGenre' => 'id']);
     }
 
-    public static function getAllGenres() {
+    public static function getAllGenres() 
+    {
         return ArrayHelper::map(self::find()->all(), 'id', 'Name');
     }
 }

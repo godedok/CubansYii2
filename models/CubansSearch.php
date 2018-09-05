@@ -26,8 +26,7 @@ class CubansSearch extends Cubans
     public function rules()
     {
         return [
-            [['Id'], 'integer'],
-            [['IdGenre', 'IsInGroup'], 'string'],
+            [['Id', 'IdGenre', 'IsInGroup'], 'integer'],
             [['FirstName', 'LastName', 'Gender', 'YearOfBirth', 'Genre.Name'], 'safe'],
         ];
     }
@@ -52,30 +51,24 @@ class CubansSearch extends Cubans
             ],
         ]);
 
+
         $this->load($params);
 
         if (!$this->validate()) {
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
-            'YearOfBirth' => $this->YearOfBirth,
-        ]);
-
-        $query ->joinWith('genre')//["genre" => function ($query) {
-              //  $query->from(['genre' => 'Genre']);
-            //} ])
+        $query ->joinWith('genre')
             ->joinWith("group")
             ->andFilterWhere(['like', 'FirstName', $this->FirstName])
-            ->andFilterWhere(['like', 'LastName', $this->LastName])
-            ->andFilterWhere(['like', 'Gender', $this->Gender])
-            ->andFilterWhere(['like', 'Group.NameGroup', $this->IsInGroup])
-            ->andFilterWhere(['like', 'Genre.Name', $this->getAttribute('genre.Name')]);
+            ->andFilterWhere(['like', 'LastName', $this->LastName]);
 
-        $dataProvider->sort->attributes['Genre.Name'] = [
-            'asc' => ['genre.Name' => SORT_ASC],
-            'desc' => ['genre.Name' => SORT_DESC],
-        ];
+        $query->andFilterWhere([
+            'YearOfBirth' => $this->YearOfBirth,
+            'Gender' => $this->Gender,
+            'IsInGroup' => $this->IsInGroup,
+            'IdGenre' => $this->IdGenre
+        ]);
 
         return $dataProvider;
     }
