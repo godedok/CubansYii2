@@ -14,20 +14,13 @@ use app\models\Cubans;
 class CubansSearch extends Cubans
 {
     /**
-     * 
-     */
-    public function attributes()
-    {
-        return array_merge(parent::attributes(), ['Genre.Name']);
-    }
-    /**
      * Add rules of validation
      */
     public function rules()
     {
         return [
             [['Id', 'IdGenre', 'IsInGroup'], 'integer'],
-            [['FirstName', 'LastName', 'Gender', 'YearOfBirth', 'Genre.Name'], 'safe'],
+            [['FirstName', 'LastName', 'Gender', 'YearOfBirth'], 'safe'],
         ];
     }
     /**
