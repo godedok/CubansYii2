@@ -21,7 +21,7 @@ use app\models\Genre;
 
     <?= $form->field($model, 'LastName')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Gender')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'Gender')->dropDownList(['male' => 'male', 'female' => 'female']) ?>
 
     <?= $form->field($model, 'YearOfBirth')->textInput(['maxlength' => true]) ?>
 

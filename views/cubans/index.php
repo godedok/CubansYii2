@@ -33,8 +33,8 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'Gender',
                 'filter' => [
-                    'male',
-                    'female',
+                    'male' => 'male',
+                    'female' => 'female',
                 ],
             ],
             [
